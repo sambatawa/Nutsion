@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Nutsion</title>
+    <link rel="icon" href="" type="image/x-icon" />
+    
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: radial-gradient(circle, #240046, #10002b);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      .header {
+        text-align: center;
+        border-radius: 0 0 100px 100px;
+        margin-left: 100px;
+        margin-right: 100px;
+        padding: 15px;
+        font-size: 60px;
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.05);
+        box-shadow: 0 2px 8px rgba(253, 247, 247, 0.2);
+        color: #d0bfff;
+      }
+      .chatbox {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+      }
+      .message {
+        max-width: 70%;
+        padding: 12px 16px;
+        margin: 10px 0;
+        border-radius: 14px;
+        line-height: 1.4;
+      }
+      .user {
+        background-color: #7b2cbf;
+        align-self: flex-end;
+        margin-left: auto;
+      }
+      .bot {
+        background-color: rgba(255, 255, 255, 0.1);
+        align-self: flex-start;
+        margin-right: auto;
+      }
+      .input-area {
+        display: flex;
+        height: 70px;
+        padding: 30px;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 30px 60px;
+        border-radius: 50px;
+        gap: 40px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .input-area input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 30px;
+        font-size: 20px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .input-area button {
+        width: 200px;
+        text
+        margin-left: 10px;
+        padding: 10px 20px;
+        border: none;
+        background: #8b12e9ff;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 30px;
+      }
+      .input-area button:active {
+        background: #a55eea;
+        scale: (0.95);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">Nutrision</div>
+    <div class="chatbox" id="chatbox"></div>
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="Tanyakan sesuatu..." />
+      <button onclick="sendMessage()">Kirim</button>
+    </div>
+
+    <script>
+      const chatbox = document.getElementById("chatbox");
+      const userInput = document.getElementById("userInput");
+
+      function appendMessage(text, sender) {
+        const message = document.createElement("div");
+        message.classList.add("message", sender);
+        message.textContent = text;
+        chatbox.appendChild(message);
+        chatbox.scrollTop = chatbox.scrollHeight;
+      }
+
+      function sendMessage() {
+        const input = userInput.value.trim();
+        if (!input) return;
+        appendMessage(input, "user");
+        userInput.value = "";
+        fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: input }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            appendMessage(data.response, "bot");
+          })
+          .catch((error) => {
+            appendMessage("Maaf, terjadi kesalahan. Coba lagi.", "bot");
+          });
+      }
+
+      userInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          sendMessage();
+        }
+      });
+    </script>
+  </body>
+</html>
