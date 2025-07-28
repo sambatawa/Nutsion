@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Nutsion</title>
-    <link rel="icon" href="" type="image/x-icon" />
-    
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAblJREFUSEvVlr8uBUEUxn830VIgGpFQKBXegFfQakiESisiEX8aEhoqCsELKLW8gWiRoKOR4AHYT3bk7Ji9O7PcTZxkc7M7u/Ob7ztn5twWDUerYR7/CjgDnKQ6VFfhfQYbBh6AkRRoHeAEcGEgk8BlLLQOUMoEbEyhxAgmW2WnbI2OKoWaWMURirW8aB69QS1AV9DmdsB1QJO6CaJVZDDleSP7QHMUogwoVcdAUkGYmV2eT31oGVD50QqT95mBSqUWXdg2ZcAPUxBdwBkwBhwC2wFv54ElQPmcBp5MYRVcCgG1KlnqxhaAAwPpAd496DMwkD+zudPCC7n0gS53+taNbQKrBjAK3Jn7buDN3B8Bc/m9gIpZl54Y4CKwbybsA148ha+AlCu2gBUP+K0yBtgLnAPjwF6eKz+Ny7l1t8AUcPMbYMr+8991liYp7CjQdgJr9yCwE6hOu5h+QAV2bR5WFo07O3WkWeAQsBsBlHVXHlCHh6r0K0L7sHYnCHhvD5BSoAb+4mhze7ogqt3hLVtlRXQ3NwqdSz86Rifak2C6ktqTW6w+VOXqNyVUKMF/AlUdPwUS9W7jwE/QBWIdljsZ3QAAAABJRU5ErkJggg==">    
     <style>
       body {
         margin: 0;
@@ -67,6 +66,7 @@
         border-radius: 30px;
         font-size: 20px;
         background: rgba(255, 255, 255, 0.1);
+        color: white;
       }
       .input-area button {
         width: 200px;
@@ -86,7 +86,10 @@
         scale: (0.95);
         box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
       }
-
+      @media (max-width: 600px) {
+        body {
+          height: 1800px;
+        }
       }
     </style>
   </head>
