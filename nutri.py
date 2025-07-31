@@ -2,26 +2,52 @@ import mysql.connector
 import os
 import json
 import openai
+from langdetect import detect
+from dotenv import load_dotenv
 
-openai.api_key = "OPENAI_API_KEY"
+load_dotenv()
+client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def tanyagpt(prompt, history):
     try:
+        language = detect(prompt)
+        print("Bahasa:", language)
+        
         openai_messages = []
-        for h in history:
-            if "role" in h and "content" in h:
-                openai_messages.append(h)
-
-        openai_messages.append({"role": "user", "content": prompt})
-
-        completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+        if language == 'id':
+            openai_messages.append({
+                "role": "system",
+                "content": "Kamu adalah Nutsion, Asisten Gizi yang membantu menjawab pertanyaan makanan, kalori, dan nutrisi."
+            })
+        else:
+            openai_messages.append({
+                "role": "system",
+                "content": "You are Nutsion, a nutrition assistant who helps users with question about food, Calories, and general nutrition."
+                })
+        
+        for riwayat in history:
+            if "role" in riwayat and "content" in riwayat:
+                openai_messages.append(riwayat)
+        openai_messages.append({
+            "role": "user", 
+            "content": prompt
+            })
+        
+        response = client.chat.completions.create(            
+            model="gpt-4.0-mini",
             messages=openai_messages,
         )
-        reply = completion['choices'][0]['message']['content']
-
-        history.append({"role": "user", "content": prompt})
-        history.append({"role": "assistant", "content": reply})
+        reply = response.choices[0].message.content
+        
+        history.append({
+            "role": "user", 
+            "content": prompt
+            })
+        
+        history.append({
+            "role": "assistant", 
+            "content": reply
+            })
         return reply, history
     except Exception as e:
         print("OpenAI error:", e)

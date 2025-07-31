@@ -13,9 +13,11 @@ def index():
 
 @app.route('/chat', methods=['POST'])
 def chat():
-    userinput = request.json.get('message', '')
+    userinput = request.json.get('message', '').strip()
     session = request.remote_addr + "_" + current_date()
-    history = ambilchat(session)
+    history = ambilchat(session)    
+    if not userinput:
+        return jsonify({'response': 'Silakan ketik sesuatu terlebih dahulu.'})
 
     if any(x in userinput.lower() for x in ['kandungan', 'nutrisi', 'gizi']):
         nama = userinput.lower()

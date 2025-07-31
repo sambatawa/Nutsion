@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>Nutsion</title>
-    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAblJREFUSEvVlr8uBUEUxn830VIgGpFQKBXegFfQakiESisiEX8aEhoqCsELKLW8gWiRoKOR4AHYT3bk7Ji9O7PcTZxkc7M7u/Ob7ztn5twWDUerYR7/CjgDnKQ6VFfhfQYbBh6AkRRoHeAEcGEgk8BlLLQOUMoEbEyhxAgmW2WnbI2OKoWaWMURirW8aB69QS1AV9DmdsB1QJO6CaJVZDDleSP7QHMUogwoVcdAUkGYmV2eT31oGVD50QqT95mBSqUWXdg2ZcAPUxBdwBkwBhwC2wFv54ElQPmcBp5MYRVcCgG1KlnqxhaAAwPpAd496DMwkD+zudPCC7n0gS53+taNbQKrBjAK3Jn7buDN3B8Bc/m9gIpZl54Y4CKwbybsA148ha+AlCu2gBUP+K0yBtgLnAPjwF6eKz+Ny7l1t8AUcPMbYMr+8991liYp7CjQdgJr9yCwE6hOu5h+QAV2bR5WFo07O3WkWeAQsBsBlHVXHlCHh6r0K0L7sHYnCHhvD5BSoAb+4mhze7ogqt3hLVtlRXQ3NwqdSz86Rifak2C6ktqTW6w+VOXqNyVUKMF/AlUdPwUS9W7jwE/QBWIdljsZ3QAAAABJRU5ErkJggg==">    
+    <link
+      rel="icon"
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAblJREFUSEvVlr8uBUEUxn830VIgGpFQKBXegFfQakiESisiEX8aEhoqCsELKLW8gWiRoKOR4AHYT3bk7Ji9O7PcTZxkc7M7u/Ob7ztn5twWDUerYR7/CjgDnKQ6VFfhfQYbBh6AkRRoHeAEcGEgk8BlLLQOUMoEbEyhxAgmW2WnbI2OKoWaWMURirW8aB69QS1AV9DmdsB1QJO6CaJVZDDleSP7QHMUogwoVcdAUkGYmV2eT31oGVD50QqT95mBSqUWXdg2ZcAPUxBdwBkwBhwC2wFv54ElQPmcBp5MYRVcCgG1KlnqxhaAAwPpAd496DMwkD+zudPCC7n0gS53+taNbQKrBjAK3Jn7buDN3B8Bc/m9gIpZl54Y4CKwbybsA148ha+AlCu2gBUP+K0yBtgLnAPjwF6eKz+Ny7l1t8AUcPMbYMr+8991liYp7CjQdgJr9yCwE6hOu5h+QAV2bR5WFo07O3WkWeAQsBsBlHVXHlCHh6r0K0L7sHYnCHhvD5BSoAb+4mhze7ogqt3hLVtlRXQ3NwqdSz86Rifak2C6ktqTW6w+VOXqNyVUKMF/AlUdPwUS9W7jwE/QBWIdljsZ3QAAAABJRU5ErkJggg=="
+    />
     <style>
       body {
         margin: 0;
@@ -30,6 +33,7 @@
         flex: 1;
         padding: 20px;
         overflow-y: auto;
+        max-height: calc(100vh-220px);
       }
       .message {
         max-width: 70%;
@@ -70,7 +74,6 @@
       }
       .input-area button {
         width: 200px;
-        text
         margin-left: 10px;
         padding: 10px 20px;
         border: none;
@@ -97,7 +100,12 @@
     <div class="header">Nutrision</div>
     <div class="chatbox" id="chatbox"></div>
     <div class="input-area">
-      <input type="text" id="userInput" placeholder="Tanyakan sesuatu..." />
+      <input
+        type="text"
+        id="userInput"
+        placeholder="Tanyakan sesuatu..."
+        autocomplete="off"
+      />
       <button onclick="sendMessage()">Kirim</button>
     </div>
 
